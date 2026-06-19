@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tastes of Japan — Gyutan & Tororo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1B2B4B;
+    --cream:  #F5F0E8;
+    --red:    #C44B2B;
+    --ink:    #2D2D2D;
+    --sage:   #8BAF8C;
+    --tan:    #D4C4A8;
+    --light:  #FAF7F2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--light);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(
+        0deg, transparent, transparent 39px,
+        rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px
+      ),
+      repeating-linear-gradient(
+        90deg, transparent, transparent 39px,
+        rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px
+      );
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.35em;
+    color: var(--tan);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    max-width: 820px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--tan);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .hero-kanji {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .kanji-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .kanji-item span:first-child {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.8rem;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .kanji-item span:last-child {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--tan);
+    text-transform: uppercase;
+  }
+
+  .kanji-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--tan);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-cue::after {
+    content: '↓';
+    font-size: 1.2rem;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(27,43,75,0.97);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--cream);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--tan);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--cream); }
+
+  /* ─── SECTIONS ─── */
+  .food-section {
+    padding: 0;
+  }
+
+  /* ─── INTRO BANNER ─── */
+  .section-banner {
+    padding: 5rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .banner-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 99px;
+    margin-bottom: 1rem;
+  }
+
+  .gyutan-section .banner-label { background: rgba(196,75,43,0.12); color: var(--red); }
+  .tororo-section .banner-label { background: rgba(139,175,140,0.18); color: #4a7a4b; }
+
+  .section-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    line-height: 1.15;
+    color: var(--navy);
+    max-width: 700px;
+  }
+
+  .section-banner .jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.95rem;
+    color: #888;
+    margin-top: 0.5rem;
+  }
+
+  /* ─── CONTENT BLOCKS ─── */
+  .content-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2rem 5rem;
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .card {
+    background: var(--cream);
+    border-radius: 4px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+  }
+
+  .gyutan-section .card-accent { background: var(--red); }
+  .tororo-section .card-accent { background: var(--sage); }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    color: var(--navy);
+    margin-bottom: 0.25rem;
+  }
+
+  .card .card-date {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 1rem;
+  }
+
+  .card p {
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: #444;
+  }
+
+  .card p + p { margin-top: 0.9rem; }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight {
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 4px;
+    padding: 2.5rem;
+  }
+
+  .highlight h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .highlight p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.8);
+  }
+
+  .highlight p + p { margin-top: 0.8rem; }
+
+  /* ─── FACT STRIP ─── */
+  .fact-strip {
+    background: var(--navy);
+    padding: 3rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .fact {
+    flex: 1 1 220px;
+    max-width: 280px;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .fact:last-child { border-right: none; }
+
+  .fact-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    color: var(--red);
+    display: block;
+  }
+
+  .fact-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-top: 0.4rem;
+    line-height: 1.5;
+  }
+
+  /* ─── DIVIDER ─── */
+  .wave-divider {
+    width: 100%;
+    line-height: 0;
+    overflow: hidden;
+  }
+
+  .wave-divider svg { display: block; width: 100%; }
+
+  /* ─── TORORO SECTION ─── */
+  .tororo-section {
+    background: var(--light);
+  }
+
+  /* ─── FOODIE TIP ─── */
+  .tip-section {
+    background: var(--cream);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .tip-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .tip-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-inner .subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 2rem;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    text-align: left;
+    margin-top: 2rem;
+  }
+
+  .tip-card {
+    background: white;
+    border-radius: 4px;
+    padding: 1.6rem;
+    border-top: 3px solid var(--red);
+  }
+
+  .tip-card.sage { border-top-color: var(--sage); }
+
+  .tip-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+
+  .tip-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    color: var(--tan);
+    text-align: center;
+    padding: 2.5rem 2rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+
+  footer .jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.2rem;
+    color: rgba(245,240,232,0.3);
+    display: block;
+    margin-top: 1rem;
+  }
+
+  /* ─── QUOTE ─── */
+  .pull-quote {
+    border-left: 3px solid var(--red);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--navy);
+    line-height: 1.6;
+  }
+
+  .tororo-section .pull-quote { border-left-color: var(--sage); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    nav { padding: 0.8rem 1.2rem; }
+    .nav-links { gap: 1rem; }
+    .content-grid { padding: 1.5rem 1.2rem 4rem; }
+    .card, .highlight { padding: 1.8rem 1.5rem; }
+    .fact-strip { flex-direction: column; align-items: center; }
+    .fact { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); max-width: 100%; }
+    .fact:last-child { border-bottom: none; }
+    .hero-kanji { gap: 1.2rem; }
+  }
+
+  /* ─── SCROLL FADE ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">A Taste of Japanese Culture · For Australian Students</p>
+  <h1>Where History Meets the <em>Table</em></h1>
+  <p class="hero-sub">Two iconic Japanese dishes — their origins, their stories, and why they taste the way they do.</p>
+  <div class="hero-kanji">
+    <div class="kanji-item">
+      <span>牛タン</span>
+      <span>Gyutan</span>
+    </div>
+    <div class="kanji-divider"></div>
+    <div class="kanji-item">
+      <span>とろろ</span>
+      <span>Tororo</span>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">和食の歴史</span>
+  <ul class="nav-links">
+    <li><a href="#gyutan">Gyutan</a></li>
+    <li><a href="#tororo">Tororo</a></li>
+    <li><a href="#tips">Try It</a></li>
+  </ul>
+</nav>
+
+<!-- ─── GYUTAN ─── -->
+<section class="food-section gyutan-section" id="gyutan">
+
+  <div class="section-banner reveal">
+    <span class="banner-label">Beef Tongue · Sendai's Signature</span>
+    <h2>Gyutan — Born from the Ashes of War</h2>
+    <p class="jp">牛タン焼き ― 仙台が生んだ戦後の味</p>
+  </div>
+
+  <div class="content-grid">
+
+    <div class="card reveal">
+      <div class="card-accent"></div>
+      <p class="card-date">Post-War Japan · 1948</p>
+      <h3>An Unlikely Beginning</h3>
+      <p>Gyutan — grilled beef tongue — is one of Japanese cuisine's most distinctive dishes, yet its origins are surprisingly recent and firmly rooted in the chaos of post-war Japan. In 1948, a Sendai restaurant owner named <strong>Keishiro Sano</strong> was searching for affordable ingredients to feed his customers during a time of severe food scarcity.</p>
+      <p>American Occupation forces stationed nearby had a surplus of beef cuts that Japanese diners rarely consumed — including tongue, liver, and other offal. Sano saw an opportunity. Inspired by the French tradition of braised tongue, he developed a distinctly Japanese preparation: thin-sliced tongue grilled over charcoal, seasoned with salt and lemon.</p>
+      <div class="pull-quote">"He didn't just cook tongue — he gave Sendai an identity that has lasted more than seventy years."</div>
+      <p>The result was rich, chewy, and deeply savoury — a revelation for diners who had never considered tongue as a centrepiece dish. Sano named his restaurant Tasuke, and it still operates in Sendai today.</p>
+    </div>
+
+    <div class="highlight reveal">
+      <h3>Why Sendai? The City Behind the Dish</h3>
+      <p>Sendai, the largest city in the Tōhoku region of northern Honshu, has become so synonymous with gyutan that the dish is simply called "Sendai beef tongue" across Japan. Visitors arriving at Sendai Station are greeted by a dedicated corridor of gyutan restaurants, and the dish is the city's most popular souvenir food.</p>
+      <p>The cultural lock-in was gradual but total. As Sano's recipe spread to other chefs in the 1950s and 60s, each added personal touches — thicker cuts, different marinades, accompanying side dishes of barley rice and oxtail soup — until gyutan became an entire meal genre rather than a single dish.</p>
+      <p>By the 1980s, national food media had romanticised Sendai gyutan as a regional treasure, and domestic travellers began making pilgrimages to the city specifically to eat it. Tourism and taste had become inseparable.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="card-accent"></div>
+      <h3>The Anatomy of a Gyutan Meal</h3>
+      <p>A traditional gyutan set — called a <em>teishoku</em> — follows a precise structure that has become almost ceremonial. The grilled tongue arrives sliced four to eight millimetres thick, slightly charred at the edges and pink at the centre. Alongside it: a mound of <strong>mugi-meshi</strong> (barley mixed with rice), a bowl of <strong>toro-toro oxtail soup</strong>, a small plate of pickled vegetables, and often a wedge of lemon.</p>
+      <p>The barley rice pairing is no accident. Barley was a staple grain in Tōhoku long before white rice became affordable for ordinary families, and its nutty, slightly chewy texture is considered the ideal foil for the rich fat of the tongue. The oxtail soup, meanwhile, uses another part of the same animal — a zero-waste philosophy that echoes the post-war resourcefulness that created the dish.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FACT STRIP -->
+<div class="fact-strip">
+  <div class="fact reveal">
+    <span class="fact-num">1948</span>
+    <span class="fact-label">Year Sano Keishiro invented Sendai gyutan</span>
+  </div>
+  <div class="fact reveal">
+    <span class="fact-num">~100</span>
+    <span class="fact-label">Gyutan restaurants lining Sendai's restaurant row today</span>
+  </div>
+  <div class="fact reveal">
+    <span class="fact-num">4–8mm</span>
+    <span class="fact-label">Traditional slice thickness for optimal chew and char</span>
+  </div>
+  <div class="fact reveal">
+    <span class="fact-num">76+</span>
+    <span class="fact-label">Years the original restaurant Tasuke has been open</span>
+  </div>
+</div>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,80 L0,80 Z" fill="#FAF7F2"/>
+  </svg>
+</div>
+
+<!-- ─── TORORO ─── -->
+<section class="food-section tororo-section" id="tororo">
+
+  <div class="section-banner reveal">
+    <span class="banner-label">Grated Yam · Ancient Staple</span>
+    <h2>Tororo — Japan's Most Ancient Comfort Food</h2>
+    <p class="jp">とろろ ― 千年の歴史を持つ自然薯の文化</p>
+  </div>
+
+  <div class="content-grid">
+
+    <div class="card reveal">
+      <div class="card-accent" style="background: var(--sage);"></div>
+      <p class="card-date">Nara Period · 8th Century CE</p>
+      <h3>A Thousand-Year History</h3>
+      <p>Tororo — the grated, viscous paste made from <em>yamaimo</em> (mountain yam) — has been eaten in Japan for well over a thousand years, making it one of the oldest continuously consumed foods in the country. References to grated yam appear in poetry anthologies and court records from the <strong>Nara period (710–794 CE)</strong>, where it was considered a prestigious food served to the aristocracy.</p>
+      <p>The plant itself, <em>Dioscorea japonica</em>, grows wild throughout the Japanese archipelago and was foraged long before it was cultivated. Its dramatic viscosity — far stickier and more mucilaginous than any Western root vegetable — made it immediately distinctive, and the Japanese developed an almost philosophical appreciation for its unusual texture, which they call <em>neba-neba</em> (slippery and sticky).</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="card-accent" style="background: var(--sage);"></div>
+      <h3>The Edo Period Boom: Mariko-juku and the Traveller's Meal</h3>
+      <p>While tororo was consumed for centuries across Japan, it became culturally codified during the <strong>Edo period (1603–1868)</strong>, particularly along the Tōkaidō — the great road connecting Edo (modern Tokyo) to Kyoto. Travellers walking this route would stop at the post town of <strong>Mariko-juku</strong>, now part of Shizuoka City, where a restaurant called <em>Chōjiya</em> served <em>tororo-jiru</em> (tororo soup over rice) as its signature dish.</p>
+      <div class="pull-quote" style="border-color: var(--sage);">The haiku master Matsuo Bashō himself wrote about stopping at Mariko for tororo soup during his famous journey along the Tōkaidō in the 1680s.</div>
+      <p>Chōjiya still operates today — believed to be one of the oldest continuously running restaurants in Japan — and its tororo-jiru remains unchanged in concept from what travellers ate three hundred years ago. The dish became so associated with rest, restoration, and the journey that it acquired an almost mythological status in Japanese travel literature.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="card-accent" style="background: var(--sage);"></div>
+      <p class="card-date">c. 1833–34 · Woodblock Print</p>
+      <h3>Immortalised in Ukiyo-e: Hiroshige's Vision of Mariko</h3>
+      <p>Perhaps the most striking testament to tororo's cultural weight is its appearance in one of Japan's most celebrated works of art. In his landmark series <strong><em>The Fifty-three Stations of the Tōkaidō</em></strong> (<em>Tōkaidō Gojūsan-tsugi</em>, c. 1833–34), the ukiyo-e master <strong>Utagawa Hiroshige</strong> devoted the print for <strong>Station 20 — Mariko-juku</strong> almost entirely to the act of eating tororo.</p>
+      <p>The print is unusual within the series. Where most of Hiroshige's station prints depict sweeping landscapes, dramatic weather, or processions of travellers, the Mariko print is intimate and domestic: it shows the thatched-roof shop of Chōjiya with a sign reading <em>Meisan tororo-jiru</em> ("Famous local tororo soup"), while a attendant serves a seated traveller who has paused his journey to eat. A hand-written poem in the upper corner — attributed to the poet Sōgi — refers to the yam soup of Mariko, tying the scene to an even older literary tradition.</p>
+      <div class="pull-quote" style="border-color: var(--sage);">Hiroshige's choice to foreground a bowl of soup rather than the landscape was a deliberate statement: this food, at this stop, was what Mariko meant to travellers on the Tōkaidō.</div>
+      <p>For Western audiences encountering Hiroshige's series — which itself profoundly influenced European Impressionists including Monet and Van Gogh — the Mariko print offers a rare window into Edo-period food culture as lived experience, not merely background detail. A simple bowl of grated yam, elevated to art.</p>
+    </div>
+
+    <div class="highlight reveal" style="background: #1e3a22;">
+      <h3>What Is Tororo, Exactly?</h3>
+      <p>To make tororo, a fresh yamaimo (or its close relative nagaimo) is peeled and grated on a fine grater called an <em>oroshigane</em>, producing a thick, almost elastic paste that clings to everything it touches. The raw paste is typically mixed with dashi broth, soy sauce, and sometimes egg yolk or miso to temper its intensity.</p>
+      <p>The texture is polarising for first-time eaters — the Japanese describe foods like tororo as <em>neba-neba</em>, and the cuisine has a whole genre of intentionally slippery, sticky foods that many non-Japanese diners find unexpectedly challenging. But this textural boldness is precisely the point: tororo is eaten not just for flavour but for the physical sensation it creates, and for a belief, rooted in centuries of tradition, that it is powerfully nutritious and restorative.</p>
+      <p>In fact, yamaimo is one of the few foods that can be eaten entirely raw in Japanese cuisine — a distinction taken seriously in a culinary culture that prizes ingredient freshness above almost all else.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="card-accent" style="background: var(--sage);"></div>
+      <h3>Tororo in Modern Japanese Life</h3>
+      <p>Today, tororo appears throughout Japanese cuisine in ways that reveal how deeply it has been absorbed into everyday eating. It is drizzled over soba noodles (<em>tororo soba</em>), spooned over hot rice (<em>tororo-gohan</em>), mixed into okonomiyaki batter for extra lightness, and served alongside tuna sashimi (<em>yamakake</em>) in izakayas nationwide.</p>
+      <p>The health narrative around tororo has also intensified in recent decades, as food science confirmed what traditional Japanese medicine had long asserted: yamaimo contains significant amounts of <strong>diastase</strong> (an enzyme that aids starch digestion), mucin, and various vitamins. It is regularly cited in Japanese media as a superfood, and its sales spike notably in autumn when the yams are harvested fresh.</p>
+      <p>In Shizuoka, Mariko-juku has become a destination for food tourists who want to eat tororo-jiru in the same setting — if not the same building — where Edo-period travellers once rested their tired feet.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- TORORO FACT STRIP -->
+<div class="fact-strip" style="background: #1e3a22;">
+  <div class="fact reveal">
+    <span class="fact-num" style="color: var(--sage);">8th C.</span>
+    <span class="fact-label">First recorded references to yamaimo in court literature</span>
+  </div>
+  <div class="fact reveal">
+    <span class="fact-num" style="color: var(--sage);">1600s</span>
+    <span class="fact-label">Matsuo Bashō writes about tororo soup at Mariko-juku</span>
+  </div>
+  <div class="fact reveal">
+    <span class="fact-num" style="color: var(--sage);">400+</span>
+    <span class="fact-label">Years Chōjiya restaurant has served its original tororo-jiru</span>
+  </div>
+  <div class="fact reveal">
+    <span class="fact-num" style="color: var(--sage);">No.20</span>
+    <span class="fact-label">Mariko-juku's station number in Hiroshige's Tōkaidō series</span>
+  </div>
+  <div class="fact reveal">
+    <span class="fact-num" style="color: var(--sage);">Raw</span>
+    <span class="fact-label">One of Japan's few vegetables eaten entirely uncooked</span>
+  </div>
+</div>
+
+<!-- TRY IT SECTION -->
+<section class="tip-section" id="tips">
+  <div class="tip-inner">
+    <p class="subtitle">For the Curious Traveller</p>
+    <h2>Ready to Try These in Japan?</h2>
+    <p style="color:#555; line-height:1.8; font-size:0.96rem; margin-top:0.5rem;">Here are a few things worth knowing before you sit down at your first gyutan restaurant or order your first tororo-gohan.</p>
+    <div class="tips-grid">
+      <div class="tip-card reveal">
+        <h4>Go to Sendai for Gyutan</h4>
+        <p>While gyutan is now served nationwide, Sendai's dedicated gyutan restaurants offer a depth of quality and authenticity hard to find elsewhere. Station 1F has a whole row of options.</p>
+      </div>
+      <div class="tip-card reveal">
+        <h4>Order the Teishoku Set</h4>
+        <p>Always order the full gyutan set — the barley rice and oxtail soup aren't optional extras, they're essential to how the meal is meant to be eaten. The combination is the dish.</p>
+      </div>
+      <div class="tip-card sage reveal">
+        <h4>Texture First, Flavour Second</h4>
+        <p>Tororo will surprise you with its stickiness. Give it a moment — stir it into the rice, pour it over your noodles, and taste it with something warm. The texture is an acquired pleasure, and it's worth acquiring.</p>
+      </div>
+      <div class="tip-card sage reveal">
+        <h4>Visit Mariko-juku</h4>
+        <p>Take a day trip from Shizuoka to Mariko for tororo-jiru at Chōjiya. You're eating the same dish that Edo-period pilgrims ate on their way to Kyoto. That's worth the journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Created to introduce Japanese food culture to international students in Japan.</p>
+  <p style="margin-top:0.4rem; opacity:0.7;">Content is intended for cultural education · Images not included in this text-based edition</p>
+  <span class="jp">食は文化なり</span>
+  <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.5;">"Food is culture." — A Japanese proverb</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
